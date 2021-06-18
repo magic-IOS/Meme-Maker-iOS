@@ -32,11 +32,11 @@ open class SwipableTextField: KaedeTextField {
 		self.addGestureRecognizer(swipeRight!)
 	}
 	
-	func swipeLeftAction() -> Void {
+    @objc func swipeLeftAction() -> Void {
 		self.swipeDelegate?.textFieldDidSwipeLeft(self)
 	}
 	
-	func swipeRightAction() -> Void {
+    @objc func swipeRightAction() -> Void {
 		self.swipeDelegate?.textFieldDidSwipeRight(self)
 	}
 

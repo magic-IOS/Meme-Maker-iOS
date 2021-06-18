@@ -164,12 +164,12 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	// MARK: - DZN Empty Data Set
 	
 	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let title = NSAttributedString(string: "No memes!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSForegroundColorAttributeName: globalTintColor])
+        let title = NSAttributedString(string: "No memes!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		return title
 	}
 	
 	func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let title = NSAttributedString(string: "Go create a meme and share it!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor])
+        let title = NSAttributedString(string: "Go create a meme and share it!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		return title
 	}
 	
@@ -183,7 +183,7 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	// MARK: - Handle long press
 	
-	func handleLongPress(_ recognizer: UILongPressGestureRecognizer) -> Void {
+    @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) -> Void {
 		if let indexPath = collectionView.indexPathForItem(at: recognizer.location(in: self.collectionView)) {
 			let alertController = UIAlertController(title: "Delete?", message: "This action is irreversible. Are you sure you want to continue?", preferredStyle: .actionSheet)
 			let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in

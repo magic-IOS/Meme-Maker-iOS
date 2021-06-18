@@ -11,7 +11,7 @@ import SVProgressHUD
 import CoreData
 import BWWalkthrough
 import DZNEmptyDataSet
-import ReachabilitySwift
+import Reachability
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -108,7 +108,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		if (Date().timeIntervalSince(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
 //			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 			print("Fetching latest memes, just for you!")
-			if let reachable = Reachability.init()?.isReachable {
+            if let reachable = try? Reachability.init().isReachable {
 				if reachable {
 					self.fetchedMemes = NSMutableArray()
 					self.fetchMemes(1)
@@ -366,7 +366,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	// MARK: - DZN Empty Data Set
 	
 	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let attrs = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSForegroundColorAttributeName: globalTintColor] as [String : Any]
+        let attrs : [NSAttributedString.Key : Any] = [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSAttributedStringKey.foregroundColor: globalTintColor]  
 		let title = NSMutableAttributedString(string: "No memes found!", attributes: attrs)
 		if (self.searchBar.text?.characters.count > 0) {
 			title.setAttributedString(NSAttributedString(string: "No results", attributes: attrs))
@@ -375,7 +375,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let desc = NSAttributedString(string: "This shouldn't happen!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
+        let desc = NSAttributedString(string: "This shouldn't happen!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		if (self.searchBar.text?.characters.count > 0) {
 			return nil
 		}
@@ -383,7 +383,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 22)!, NSForegroundColorAttributeName: globalTintColor])
+        let title = NSAttributedString(string: "Reload!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 22)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		if (self.searchBar.text?.characters.count > 0) {
 			return nil
 		}

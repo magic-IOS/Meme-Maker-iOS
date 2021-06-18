@@ -49,29 +49,29 @@ func updateGlobalTheme () -> Void {
 		globalBackColor = UIColor(white: 0.12, alpha: 1)
 		globalTintColor = UIColor(hexString: "AAFA78")
 		UIApplication.shared.statusBarStyle = .lightContent
-		IQKeyboardManager.sharedManager().keyboardAppearance = .dark
+		IQKeyboardManager.shared.keyboardAppearance = .dark
 	}
 	else {
 		globalBackColor = UIColor(hexString: "EFF0EF")
 		globalTintColor = UIColor(hexString: "326400")
 		UIApplication.shared.statusBarStyle = .default
-		IQKeyboardManager.sharedManager().keyboardAppearance = .light
+		IQKeyboardManager.shared.keyboardAppearance = .light
 	}
 	
 	UINavigationBar.appearance().backgroundColor = globalBackColor
 	UINavigationBar.appearance().tintColor = globalTintColor
 	UINavigationBar.appearance().barTintColor = globalBackColor
 	
-	UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor]
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSAttributedStringKey.foregroundColor: globalTintColor]
 	
 	UITabBar.appearance().backgroundColor = globalBackColor
 	UITabBar.appearance().tintColor = globalTintColor
 	UITabBar.appearance().barTintColor = globalBackColor
 	
-	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: globalTintColor], for: .selected)
-	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: UIColor.lightGray], for: UIControlState())
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSAttributedStringKey.foregroundColor: globalTintColor], for: .selected)
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSAttributedStringKey.foregroundColor: UIColor.lightGray], for: UIControlState())
 	
-	UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor], for: UIControlState())
+    UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSAttributedStringKey.foregroundColor: globalTintColor], for: UIControlState())
 	
 	UITableView.appearance().backgroundColor = globalBackColor
 	UITableView.appearance().tintColor = globalTintColor
@@ -88,8 +88,8 @@ func updateGlobalTheme () -> Void {
 	UISearchBar.appearance().tintColor = globalTintColor
 	UISearchBar.appearance().barTintColor = globalBackColor
 	
-	UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor]
-	UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor.withAlphaComponent(0.8)]
+    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.font.rawValue: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSAttributedStringKey.foregroundColor.rawValue: globalTintColor]
+    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.font.rawValue: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSAttributedStringKey.foregroundColor.rawValue: globalTintColor.withAlphaComponent(0.8)]
 	
 	SVProgressHUD.setFont(UIFont(name: "EtelkaNarrowTextPro", size: 16))
 	SVProgressHUD.setBackgroundColor(globalBackColor)

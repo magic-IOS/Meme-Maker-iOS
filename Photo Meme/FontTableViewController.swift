@@ -219,7 +219,7 @@ class FontTableViewController: UITableViewController {
 	
 	// MARK: - Handle swipe
 	
-	func swipeLeftAction() -> Void {
+    @objc func swipeLeftAction() -> Void {
 		
 		UIView.animate(withDuration: 0.12, delay: 0.0, options: .curveEaseIn, animations: {
 			self.view.layer.transform = CATransform3DMakeTranslation(-self.view.bounds.size.width, 0, 0)
@@ -241,7 +241,7 @@ class FontTableViewController: UITableViewController {
 		
 	}
 	
-	func swipeRightAction() -> Void {
+    @objc func swipeRightAction() -> Void {
 		
 		UIView.animate(withDuration: 0.12, delay: 0.0, options: .curveEaseIn, animations: {
 			self.view.layer.transform = CATransform3DMakeTranslation(self.view.bounds.size.width, 0, 0)

@@ -5,14 +5,14 @@ use_frameworks!
 
 target 'Meme Maker' do
 
-pod 'IQKeyboardManagerSwift', '4.0.10'
+pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~>3.7'
 pod 'SVProgressHUD'
 pod 'TextFieldEffects'
-pod 'BWWalkthrough', '2.1.0'
+pod 'BWWalkthrough'
 pod 'SSZipArchive'
 pod 'DZNEmptyDataSet'
-pod 'ReachabilitySwift', '~> 3'
+pod 'ReachabilitySwift'
 
 end
 

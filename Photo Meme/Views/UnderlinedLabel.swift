@@ -32,7 +32,7 @@ class UnderlinedLabel: UILabel {
 	func beizerPathForText(_ text: NSString, alignment: NSTextAlignment) -> UIBezierPath {
 		let SIZE = self.bounds.size
 		let ORIGIN = self.bounds.origin
-		let boundingRect = text.boundingRect(with: CGSize(width: 1000, height: 1000), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: self.font], context: nil)
+        let boundingRect = text.boundingRect(with: CGSize(width: 1000, height: 1000), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: self.font], context: nil)
 		let prescribedLength = boundingRect.size.width
 		let offset = (SIZE.width - prescribedLength)/2
 		let beizerPath = UIBezierPath()

@@ -187,8 +187,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			if (UI_USER_INTERFACE_IDIOM() == .pad) {
 				self.topTextField.isEnabled = false
 				self.bottomTextField.isEnabled = false
-				self.topTextAttr.text = self.topTextField.text as! NSString
-				self.bottomTextAttr.text = self.bottomTextField.text as! NSString
+                self.topTextAttr.text = self.topTextField.text! as NSString
+                self.bottomTextAttr.text = self.bottomTextField.text! as NSString
 			}
 			else {
 				self.topTextField.text = String(self.topTextAttr.text)
@@ -255,7 +255,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercased : String(topTextAttr.text);
 		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercased : String(bottomTextAttr.text);
-		
+        
 		var topTextRect = topText.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		topTextAttr.rect = CGRect(x: 0, y: 8, width: (imageSize?.width)!, height: (imageSize?.height)!/2 - 8)
 		// Adjust top size
@@ -378,7 +378,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 	}
 	
-	func dismissFontAction(_ sender: AnyObject) -> Void {
+    @objc func dismissFontAction(_ sender: AnyObject) -> Void {
 		self.view.endEditing(true)
 		if (shouldDisplayFTVC == false) {
 			UIView.animate(withDuration: 0.15, animations: {
@@ -400,7 +400,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 	}
 	
-	func handlePinch(_ recognizer: UIPinchGestureRecognizer) -> Void {
+    @objc func handlePinch(_ recognizer: UIPinchGestureRecognizer) -> Void {
 		let fontScale = 0.3 * recognizer.velocity
 		let point = recognizer.location(in: self.memeImageView)
 		let topRect = CGRect(x: 0, y: 0, width: self.memeImageView.bounds.size.width, height: self.memeImageView.bounds.size.height/2)
@@ -423,7 +423,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		cookImage()
 	}
 	
-	func handlePan(_ recognizer: UIPanGestureRecognizer) -> Void {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) -> Void {
 		let translation = recognizer.translation(in: memeImageView)
 //		let location = recognizer.locationInView(self.memeImageView)
 		if (movingTop) {
@@ -438,7 +438,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		cookImage()
 	}
 	
-	func handleDoubleTap(_ recognizer: UITapGestureRecognizer) -> Void {
+    @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.uppercase = !topTextAttr.uppercase
 		bottomTextAttr.uppercase = !bottomTextAttr.uppercase
 		topTextAttr.saveAttributes("topAttr")
@@ -446,7 +446,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		cookImage()
 	}
 	
-	func resetOffset(_ recognizer: UITapGestureRecognizer) -> Void {
+    @objc func resetOffset(_ recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.offset = CGPoint.zero
 		topTextAttr.fontSize = 44
 		bottomTextAttr.offset = CGPoint.zero
@@ -467,7 +467,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		return true
 	}
 	
-	func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
 		shareImageAction(self.shareImageButton)
 	}
 	

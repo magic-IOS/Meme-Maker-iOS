@@ -93,7 +93,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 	
 	// MARK: - Keyboard
 	
-	func willShowKeyboard(_ notification: Notification) -> Void {
+    @objc func willShowKeyboard(_ notification: Notification) -> Void {
 		if (self.bottomTextField.isFirstResponder) {
 			let dict = notification.userInfo
 			let rect = dict![UIKeyboardFrameEndUserInfoKey] as! CGRect
@@ -109,7 +109,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		}
 	}
 	
-	func willHideKeyboard(_ notification: Notification) -> Void {
+    @objc func willHideKeyboard(_ notification: Notification) -> Void {
 		UIView.animate(withDuration: 0.3, animations: { 
 			self.view.layer.transform = CATransform3DMakeTranslation(0, 0, 0)
 		}) 
@@ -126,7 +126,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		
 		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercased : String(topTextAttr.text);
 		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercased : String(bottomTextAttr.text);
-		
+        topTextAttr.getTextAttributes()
 		var topTextRect = topText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		topTextAttr.rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height/2)
 		// Adjust top size
@@ -240,7 +240,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		}
 	}
 	
-	func dismissFontAction(_ sender: AnyObject) -> Void {
+    @objc func dismissFontAction(_ sender: AnyObject) -> Void {
 		self.view.endEditing(true)
 		if (shouldDisplayFTVC == false) {
 			UIView.animate(withDuration: 0.15, animations: {
@@ -259,7 +259,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		}
 	}
 	
-	func handlePinch(_ recognizer: UIPinchGestureRecognizer) -> Void {
+    @objc func handlePinch(_ recognizer: UIPinchGestureRecognizer) -> Void {
 		let fontScale = 0.3 * recognizer.velocity
 		let point = recognizer.location(in: self.memeImageView)
 		let topRect = CGRect(x: 0, y: 0, width: self.memeImageView.bounds.size.width, height: self.memeImageView.bounds.size.height/2)
@@ -282,7 +282,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		cookImage()
 	}
 	
-	func handlePan(_ recognizer: UIPanGestureRecognizer) -> Void {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) -> Void {
 		let translation = recognizer.translation(in: memeImageView)
 		//		let location = recognizer.locationInView(self.memeImageView)
 		if (movingTop) {
@@ -297,7 +297,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		cookImage()
 	}
 	
-	func handleDoubleTap(_ recognizer: UITapGestureRecognizer) -> Void {
+    @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.uppercase = !topTextAttr.uppercase
 		bottomTextAttr.uppercase = !bottomTextAttr.uppercase
 		let ret1 = topTextAttr.saveAttributes("topAttr")
@@ -308,7 +308,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		cookImage()
 	}
 	
-	func resetOffset(_ recognizer: UITapGestureRecognizer) -> Void {
+    @objc func resetOffset(_ recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.offset = CGPoint.zero
 		topTextAttr.fontSize = 44
 		bottomTextAttr.offset = CGPoint.zero

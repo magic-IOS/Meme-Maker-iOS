@@ -66,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SVProgressHUD.setDefaultMaskType(.gradient)
 		SVProgressHUD.setDefaultStyle(.custom)
 		
-		IQKeyboardManager.sharedManager().enable = true
-		IQKeyboardManager.sharedManager().overrideKeyboardAppearance = true
-		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
+		IQKeyboardManager.shared.enable = true
+		IQKeyboardManager.shared.overrideKeyboardAppearance = true
+		
 		
 		updateGlobalTheme()
 		

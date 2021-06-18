@@ -148,30 +148,30 @@ class XTextAttributes: NSObject {
 		opacity = 1
 	}
 	
-	func getTextAttributes() -> [String: AnyObject] {
+	func getTextAttributes() -> [NSAttributedStringKey : Any] {
 		
-		var attr: [String: AnyObject] = [:]
+		var attr: [NSAttributedStringKey : Any] = [:]
 		
 		font = UIFont(name: font.fontName, size: fontSize)!
-		attr[NSFontAttributeName] = font
+        attr[NSAttributedStringKey.font] = font
 		
-		attr[NSForegroundColorAttributeName] = textColor.withAlphaComponent(opacity)
+        attr[NSAttributedStringKey.foregroundColor] = textColor.withAlphaComponent(opacity)
 		
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.alignment = alignment
 		paragraphStyle.maximumLineHeight = fontSize
 		
-		attr[NSParagraphStyleAttributeName] = paragraphStyle
+        attr[NSAttributedStringKey.paragraphStyle] = paragraphStyle
 		
-		attr[NSStrokeWidthAttributeName] = NSNumber(value: Float(-strokeWidth) as Float)
+        attr[NSAttributedStringKey.strokeWidth] = NSNumber(value: Float(-strokeWidth) as Float)
 		
-		attr[NSStrokeColorAttributeName] = outlineColor
+        attr[NSAttributedStringKey.strokeColor] = outlineColor
 		
 		let shadow = NSShadow()
 		shadow.shadowColor = outlineColor
 		shadow.shadowOffset = CGSize(width: 0.1, height: 0.1)
 		shadow.shadowBlurRadius = 0.8
-		attr[NSShadowAttributeName] = shadow
+        attr[NSAttributedStringKey.shadow] = shadow
 		
 		return attr
 		

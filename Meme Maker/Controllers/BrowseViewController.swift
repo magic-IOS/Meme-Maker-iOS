@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import CoreData
 import DZNEmptyDataSet
-import ReachabilitySwift
+import Reachability
 import SDWebImage
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -94,7 +94,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	@IBAction func refershAction(_ sender: AnyObject) {
 		SVProgressHUD.show(withStatus: "Loading...")
 		do {
-			if let reachable = Reachability.init()?.isReachable {
+            if let reachable = try? Reachability.init().isReachable {
 				if reachable {
 					self.fetchedCreations = NSMutableArray()
 					self.fetchCreations(1)
@@ -249,7 +249,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		return 0
 	}
 	
-	func handleLongPress(_ recognizer: UILongPressGestureRecognizer) -> Void {
+    @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) -> Void {
 		if let indexPath = collectionView.indexPathForItem(at: recognizer.location(in: self.collectionView)) {
 			let creation = creations.object(at: indexPath.row) as! XCreated
 			if let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)")) {
@@ -268,12 +268,12 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	// MARK: - DZN Empty Data Set
 	
 	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let title = NSAttributedString(string: "No memes to browse!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSForegroundColorAttributeName: globalTintColor])
+        let title = NSAttributedString(string: "No memes to browse!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		return title
 	}
 	
 	func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
+        let title = NSAttributedString(string: "Reload!", attributes: [NSAttributedStringKey.font: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSAttributedStringKey.foregroundColor: globalTintColor])
 		return title
 	}
 	

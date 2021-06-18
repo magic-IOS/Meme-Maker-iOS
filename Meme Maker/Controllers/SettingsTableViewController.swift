@@ -11,7 +11,7 @@ import CoreData
 import SVProgressHUD
 import MessageUI
 import BWWalkthrough
-import ReachabilitySwift
+import Reachability
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -195,7 +195,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		if (indexPath.section == tableView.numberOfSections - 4) {
 			// Update...
 			SVProgressHUD.show(withStatus: "Fetching latest memes, Just for you!")
-			if let reachable = Reachability.init()?.isReachable {
+            if let reachable = try? Reachability.init().isReachable {
 				if reachable {
 					self.fetchedMemes = NSMutableArray()
 					self.fetchMemes(1)
